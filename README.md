@@ -33,4 +33,18 @@ flask db upgrade
 ```
 Now if we look in phpmyadmin we should see already created tables.
 
-One more thing we need to import data to our database.
+One more thing we need to import data to our database. We can do this be following steps:
+
+1.
+![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_1.png)
+
+2.
+![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_2.png)
+
+3.
+![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_3.png)
+
+Now if we run that command, we should already see the web application
+```bash
+flask  --app app run
+```
