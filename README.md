@@ -44,6 +44,22 @@ One more thing we need to import data to our database. We can do this be followi
 3.
 ![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_3.png)
 
+Alternative way without phpmyadmin:
+```bash
+# copying a file to docker container
+docker cp ./ki_gui_db_final.sql c4f435751266:./
+# opening the mysql command line client in docker container
+docker exec -it c4f435751266  mysql -u root -p
+```
+
+In mysql command-line
+```bash
+USE ki_gui_db
+SOURCE ki_gui_db_final.sql
+\q
+```
+
+
 Now if we run that command, we should already see the web application
 ```bash
 flask  --app app run
