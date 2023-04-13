@@ -28,7 +28,9 @@ docker compose up -d
 We can see if everything went fine by going to http://localhost:9090 and seeing phpmyadmin, if not, don't worry, we'll find out what the problem is :)
 
 Login for phpmyadmin is:
+
 user: root
+
 password: root
 
 Now we need to run migration to create tables in our db, so let's run this command
