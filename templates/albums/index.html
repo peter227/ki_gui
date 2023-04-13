@@ -1,0 +1,33 @@
+{% extends "paging.html" %}
+
+{% block content %}
+    <div class="card-group" style="margin-top: 20px">
+        {% for album in albums.items %}
+            <div class="card text-center" style="padding-left: 2px">
+                <img src="{{ album.url_cover }}" class="card-img-top" alt="Photo of {{ album.title }}"
+                     style="width: 400px;height: 350px!important;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ album.title }}</h5>
+                    <p class="card-text">{{ album.short_description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Release year: {{ album.release_year }}</li>
+                    <li class="list-group-item">Number of songs: {{ album.number_of_songs }}</li>
+                    <li class="list-group-item">Length in sec: {{ album.length_sec }}</li>
+                    <li class="list-group-item">Author: <a href="{{ url_for("authors.inspect_view", id=album.author.id_a) }}" style="text-decoration: none; color: unset">{{ album.author.name }}</a></li>
+                </ul>
+                <div class="card-footer">
+                    <a href="{{ url_for("albums.update_view", id=album.id_a) }}" class="btn btn-light">Update</a>
+                    <a href="#" class="btn btn-danger"
+                       onclick="$('#album-delete--{{ album.id_a }}').submit()">Delete</a>
+                    <form action="{{ url_for("albums.delete_record", id=album.id_a) }}" method="POST"
+                          id="album-delete--{{ album.id_a }}">
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <p class="text-left mt-3">
+        <a href="{{ url_for("albums.add_view") }}" class="btn btn-primary">Add album</a>
+    </p>
+{% endblock %}

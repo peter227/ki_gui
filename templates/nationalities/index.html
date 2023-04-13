@@ -1,0 +1,31 @@
+{% extends "paging.html" %}
+{% block content %}
+
+<div class="card" style="margin-top: 20px">
+    <div class="card-header text-center">
+        Nationalities
+    </div>
+    <div class="card-body text-center">
+        <table class="table table-bordered table-responsive" id="nationalities-table" style="word-break: break-all;margin: auto">
+            <thead>
+                <tr>
+                    <th scope="col" style="padding: 3px">ID</th>
+                    <th scope="col" style="padding: 5px">Nationality</th>
+                    <th scope="col" style="padding: 5px">Created at</th>
+                    <th scope="col" style="padding: 10px">Updated at</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nationality in nationalities.items %}
+                <tr>
+                    <td>{{ nationality.id_n }}</td>
+                    <td style="padding: 2px">{{ nationality.nationality }}</td>
+                    <td style="padding: 5px">{{ nationality.created_at.strftime("%d.%m.%Y %H:%M:%S")  }}</td>
+                    <td style="padding: 5px">{{ nationality.updated_at.strftime("%d.%m.%Y %H:%M:%S") }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

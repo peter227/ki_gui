@@ -1,0 +1,37 @@
+{% extends "menu.html" %}
+{% block paging %}
+<div class="text-right" style="margin-top: 20px">
+    <a href="{{ url_for(url, page=name.prev_num) }}"
+       class="btn btn-outline-light
+       {% if name.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+    <!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in name.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+        <!-- Check for the active page and set the link to "Active"-->
+            {% if name.page == page_num %}
+            <a href="{{ url_for(url, page=page_num) }}"
+               class="btn btn-light">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for(url, page=page_num) }}"
+               class="btn btn-outline-light">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for(url, page=name.next_num) }}"
+       class="btn btn-outline-dark
+       {% if name.page == name.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3">
+   Showing page {{ name.page }} of {{ name.pages }}
+</p>
+{% endblock %}

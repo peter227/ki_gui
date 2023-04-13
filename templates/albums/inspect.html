@@ -1,0 +1,18 @@
+{% extends "menu.html" %}
+
+{% block content %}
+
+    <div class="card" style="width: 18rem;margin-top: 20px;margin-left: auto;margin-right: auto">
+        <img src="{{ album[0].url_cover }}" class="card-img-top" alt="Photo of {{ album[0].title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ album[0].title }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Release year: {{ album[0].release_year }}</li>
+            <li class="list-group-item">Number of songs: {{ album[0].number_of_songs }}</li>
+            <li class="list-group-item">Length in sec: {{ album[0].length_sec }}</li>
+            <li class="list-group-item">Author: {{ album[0].author.name }}</li>
+        </ul>
+    </div>
+
+{% endblock %}

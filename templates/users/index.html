@@ -1,0 +1,39 @@
+{% extends "menu.html" %}
+
+{% block content %}
+
+<div class="card" style="margin-top: 20px">
+    <div class="card-header text-center">
+        Users
+    </div>
+    <div class="card-body text-center">
+        <table class="table table-bordered table-responsive" id="users-table" style="word-break: break-all;margin: auto">
+            <thead>
+                <tr>
+                    <th scope="col" style="padding: 3px">ID</th>
+                    <th scope="col" style="padding: 5px">Profile Name</th>
+                    <th scope="col" style="padding: 10px">E-mail</th>
+                    <th scope="col" style="padding: 5px">Date of Birth</th>
+                    <th scope="col" style="padding: 5px">Gender</th>
+                    <th scope="col" style="padding: 5px">Created at</th>
+                    <th scope="col" style="padding: 10px">Updated at</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users.items %}
+                <tr>
+                    <td>{{ user.id_u }}</td>
+                    <td style="padding: 2px">{{ user.profile_name }}</td>
+                    <td style="padding: 2px;">{{ user.email }}</td>
+                    <td>{{ user.date_of_birth }}</td>
+                    <td>{{ user.gender_f.description }}</td>
+                    <td style="padding: 5px">{{ user.created_at.strftime("%d.%m.%Y %H:%M:%S")  }}</td>
+                    <td style="padding: 5px">{{ user.updated_at.strftime("%d.%m.%Y %H:%M:%S") }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

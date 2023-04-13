@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card" style="margin-top: 4em;">
+    <div class="card-header text-center">
+        Menu
+    </div>
+    <div class="card-body">
+        <ul class="nav flex-column" style="text-align: center">
+            <li class="nav-item main-menu">
+                <a class="nav-link main-menu" href="{{ url_for('genres.index_view') }}">Genres</a>
+            </li>
+            <li class="nav-item main-menu">
+                <a class="nav-link" href="{{ url_for('nationalities.index_view') }}">Nationalities</a>
+            </li>
+            <li class="nav-item main-menu">
+                <a class="nav-link" href="{{ url_for('users.index_view') }}">Users</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
