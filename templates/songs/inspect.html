@@ -1,0 +1,28 @@
+{% extends "menu.html" %}
+
+{% block content %}
+
+    <div class="card" style="width: 18rem;margin-top: 20px;margin-left: auto;margin-right: auto">
+        <img src="{{ song[0].url_cover }}" class="card-img-top" alt="Photo of {{ song[0].name }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ song[0].name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Release year: {{ song[0].release_year }}</li>
+            <li class="list-group-item">Number of plays: {{ song[0].number_of_plays }}</li>
+            <li class="list-group-item">Length in sec: {{ song[0].length }}</li>
+            <li class="list-group-item">Author:
+                <ul>
+                    {% for author in song[0].authors %}
+                    <li>{{ author.name }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li class="list-group-item">Genre: {{ song[0].genre.title }}</li>
+            {% if song[0].album %}
+                <li class="list-group-item">Album: {{ song[0].album.title }}</li>
+            {% endif %}
+        </ul>
+    </div>
+
+{% endblock %}

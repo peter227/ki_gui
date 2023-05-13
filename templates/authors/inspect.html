@@ -1,0 +1,25 @@
+{% extends "menu.html" %}
+
+{% block content %}
+
+    <div class="card" style="width: 18rem;margin-top: 20px;margin-left: auto;margin-right: auto">
+        <img src="{{ author[0].url_photo }}" class="card-img-top" alt="Photo of {{ author[0].name }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ author[0].name }}</h5>
+            <p class="card-text">{{ author[0].short_description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nationality: {{ author[0].nationality.nationality }}</li>
+            <li class="list-group-item">Number of songs: {{ author[0].number_of_songs }} </li>
+            <li class="list-group-item">Number of albums: {{ author[0].number_of_albums }}</li>
+            <li class="list-group-item">Songs:
+                <ul>
+                    {% for song in author[0].songs %}
+                        <li><a href="{{ url_for('songs.inspect_view', id=song.id_s) }}">{{ song.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}

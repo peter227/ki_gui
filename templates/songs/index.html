@@ -1,0 +1,83 @@
+{% extends "menu.html" %}
+
+{% block content %}
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" data-bs-interval="false"
+         style="margin-top: 20px">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            {% for i in range(songs|length) %}
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ i + 1 }}"
+                        aria-label="Slide {{ i }}"></button>
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active text-center">
+                <h5><a href="{{ url_for("songs.inspect_view", id=songs[0].id_s) }}" style="text-decoration: none; color: unset">{{ songs[0].name }}</a></h5>
+                {% for author in  songs[0].authors %}
+                    <p class="text-secondary" style="margin-top: 5px"><strong><a href="{{ url_for("authors.inspect_view", id=author.id_a) }}" style="text-decoration: none;color: unset">{{ author.name }}</a></strong></p>
+                {% endfor %}
+                {% if  songs[0].album %}
+                    <p class="text-secondary">Album: <a href="{{ url_for("albums.inspect_view", id=songs[0].album.id_a) }}" style="text-decoration: none; color: unset">{{ songs[0].album.title }}</a></p>
+                {% endif %}
+                <img src="{{ songs[0].url_cover }}" class="d-block" alt="..."
+                     style="margin-left: auto;margin-right: auto;opacity: 0.9" width="300">
+                <div style="margin-top: 20px">
+                    <a href="{{ url_for("songs.update_view", id=songs[0].id_s) }}" class="btn btn-light">Update</a>
+                    <a href="#" class="btn btn-danger"
+                       onclick="$('#songs-delete--{{ songs[0].id_s }}').submit()">Delete</a>
+                    <form action="{{ url_for("songs.delete_record", id=songs[0].id_s) }}" method="POST"
+                          id="song-delete--{{ songs[0].id_s }}">
+                    </form>
+                </div>
+            </div>
+            {% for song in songs[1:] %}
+                <div class="carousel-item text-center">
+                    <h5><a href="{{ url_for("songs.inspect_view", id=song.id_s) }}" style="text-decoration: none;color: unset">{{ song.name }}</a></h5>
+                    {% for author in  song.authors %}
+                        <p class="text-secondary"><strong><a href="{{ url_for("authors.inspect_view", id=author.id_a) }}" style="text-decoration: none;color: unset">{{ author.name }}</a></strong></p>
+                    {% endfor %}
+                    {% if  songs[0].album %}
+                        <p class="text-secondary">Album: <a href="{{ url_for("albums.inspect_view", id=song.album.id_a) }}" style="text-decoration: none; color: unset">{{ song.album.title }}</a></p>
+                    {% endif %}
+                    {% if song.url_cover %}
+                        <img src="{{ song.url_cover }}" class="d-block"
+                             style="margin-left: auto;margin-right: auto;opacity: 0.8" alt="Song cover photo"
+                             width="300">
+                    {% elif song.album.url_cover %}
+                        <img src="{{ song.album.url_cover }}" style="margin-left: auto;margin-right: auto;opacity: 0.8"
+                             alt="Song cover photo" width="300">
+                    {% else %}
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1200px-No-Image-Placeholder.svg.png"
+                             class="d-block w-20" width="300em" alt="No cover photo"
+                             style="margin-right: auto;margin-left: auto">
+                    {% endif %}
+                    <div style="margin-top: 20px">
+                        <a href="{{ url_for("songs.update_view", id=song.id_s) }}" class="btn btn-light">Update</a>
+                        <a href="#" class="btn btn-danger"
+                           onclick="$('#songs-delete--{{ song.id_s }}').submit()">Delete</a>
+                        <form action="{{ url_for("songs.delete_record", id=song.id_s) }}" method="POST"
+                              id="song-delete--{{ song.id_s }}">
+                        </form>
+                    </div>
+                <!--
+                TODO: When there's time, fix the overlapping buttons and slider
+                -->
+                </div>
+            {% endfor %}
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <p class="text-left mt-3">
+        <a href="{{ url_for("songs.add_view") }}" class="btn btn-primary">Add song</a>
+    </p>
+{% endblock %}
