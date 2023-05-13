@@ -42,20 +42,20 @@ Now if we look in phpmyadmin we should see already created tables.
 One more thing we need to import data to our database. We can do this be following steps:
 
 1.
-![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_1.png)
+![Alt text](/readme_assets/phpmyadmin_1.png)
 
 2.
-![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_2.png)
+![Alt text](/readme_assets/phpmyadmin_2.png)
 
 3.
-![Alt text](https://github.com/peter227/ki_gui/blob/main/phpmyadmin_3.png)
+![Alt text](/readme_assets/phpmyadmin_3.png)
 
 Alternative way without phpmyadmin:
 ```bash
 # copying a file to docker container
-docker cp ./ki_gui_db_final.sql c4f435751266:./
+docker cp ./ki_gui_db_final.sql {HERE INSERT YOUR DOCKER CONTAINER ID}:./
 # opening the mysql command line client in docker container
-docker exec -it c4f435751266  mysql -u root -p
+docker exec -it {HERE INSERT YOUR DOCKER CONTAINER ID}  mysql -u root -p
 ```
 
 In mysql command-line
